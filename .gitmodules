@@ -1,0 +1,3 @@
+[submodule "js/digest-ajax"]
+	path = js/digest-ajax
+	url = https://github.com/Kynec/digest-ajax.git
