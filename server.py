@@ -2,10 +2,15 @@
 # -*- coding: utf-8 -*-
 import tornado.ioloop
 import tornado.web
+import os
 
 from tornado.web import RequestHandler
 from tornado.escape import utf8
 from hashlib import md5
+
+class BaseHandler(RequestHandler):
+    def get(self):
+        self.render('index.html')
  
 class BasicAuthHandler(RequestHandler):
     def get(self):
@@ -83,10 +88,17 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
 
-application = tornado.web.Application([
-    (r"/", DigestAuthHandler),
-])
+BASE_DIR = os.path.dirname(__file__)
+
+application = tornado.web.Application(
+    [
+        (r"/", BaseHandler),
+        (r"/login/", DigestAuthHandler)
+    ],
+    template_path=os.path.join(BASE_DIR, 'templates'),
+    static_path=os.path.join(BASE_DIR, 'js'),
+)
 
 if __name__ == "__main__":
-    application.listen(80)
+    application.listen(8000)
     tornado.ioloop.IOLoop.instance().start()
