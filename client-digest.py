@@ -9,7 +9,7 @@ try:
 	password='bar'
 	url = 'http://localhost:8000/login/'
 
-	http_handler = urllib.request.HTTPHandler()
+	http_handler = urllib.request.HTTPHandler(debuglevel=1)
 	req = urllib.request.Request(url)
 	pass_mgr = urllib.request.HTTPPasswordMgrWithPriorAuth()
 	pass_mgr.add_password(None, url, user, password, is_authenticated=True)
