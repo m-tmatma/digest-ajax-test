@@ -1,5 +1,12 @@
 import urllib.request
 import urllib
+import sys
+
+fout = open("http.log", "a")
+org_stdout = sys.stdout
+org_stderr = sys.stderr
+sys.stdout = fout
+sys.stderr = fout
 
 try:
 	# http://vps.lolipop.jp/urllib%E3%81%A7Basic%E8%AA%8D%E8%A8%BC%E3%82%84Digest%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E3%81%86%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB
@@ -31,3 +38,6 @@ except urllib.error.HTTPError as e:
 	print (e.headers)
 except urllib.error.URLError as e:
 	print (e.reason)
+
+sys.stdout = org_stdout
+sys.stderr = org_stderr
