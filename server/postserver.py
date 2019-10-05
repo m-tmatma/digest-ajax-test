@@ -99,8 +99,24 @@ class SimpleHandler(RequestHandler):
     def post(self):
         headers = self.request.headers
         contentType = headers['Content-Type']
-        print(self.request.body)
         
+        with open("out.data", "wb") as fout:
+            fout.write(self.request.body)
+
+        print("---------------------------------")
+        print("request.uri", self.request.uri)
+        print("---------------------------------")
+        print("request.query_arguments", self.request.query_arguments)
+        print("---------------------------------")
+        for arg in self.request.query_arguments.keys():
+            print("request.get_query_argument", arg, self.get_query_argument(arg))
+        print("---------------------------------")
+        print("---------------------------------")
+        print("request.body", self.request.body)
+        
+        print("---------------------------------")
+        print("---------------------------------")
+        print("---------------------------------")
         self.render('dummy.html')
 
 

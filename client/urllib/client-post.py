@@ -7,7 +7,7 @@ data = open(path, "rb").read()
 print (data)
 
 urls = [
-	'http://localhost:8000/post/',
+	'http://localhost:8000/post/?param1=%311&param2=2%31',
 ]
 
 for url in urls:
