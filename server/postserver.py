@@ -91,11 +91,25 @@ class BaseHandler(RequestHandler):
         #   print (data.decode('utf-8'))
         #   self.render('dummy.html')
 
+
+class SimpleHandler(RequestHandler):
+    def get(self):
+        self.render('dummy.html')
+
+    def post(self):
+        headers = self.request.headers
+        contentType = headers['Content-Type']
+        print(self.request.body)
+        
+        self.render('dummy.html')
+
+
 BASE_DIR = os.path.dirname(__file__)
 
 application = tornado.web.Application(
     [
         (r"/", BaseHandler),
+        (r"/post/", SimpleHandler),
     ],
     template_path=os.path.join(BASE_DIR, 'templates'),
     static_path=os.path.join(BASE_DIR, 'js'),
