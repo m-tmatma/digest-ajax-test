@@ -38,7 +38,7 @@ class BasicAuthHandler(RequestHandler):
             self.set_header('WWW-Authenticate', 'Basic realm="%s"' % realm)
  
 class DigestAuthHandler(RequestHandler):
-    def get(self):
+    def post(self):
         realm = 'test'
         opaque = 'asdf'
         # Real implementations would use a random nonce.
