@@ -3,7 +3,7 @@ function login(website, username, password) {
     console.log(username);
     console.log(password);
 
-    $.ajaxDigest(website, {
+    $.postDigest(website, {
         username: username,
         password: password
     }).done(function(data, textStatus, xhr) {
